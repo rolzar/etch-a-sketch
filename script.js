@@ -11,17 +11,32 @@ function grid(size){
     }
 }
 
-function color(e){
-    console.log(e.target.id);
-    const colorIn = document.querySelector("#"+e.target.id);
-    console.log(colorIn);
-    colorIn.classList.add('changeBackground'); 
+function colorIn(e){
+    const choice = document.querySelector("#"+e);
+    choice.classList.add('changeBackground'); 
 
+}
+
+function clear(){
+    const choice = document.querySelectorAll(".grid");
+    choice.forEach(e => e.classList.remove('changeBackground')); 
+
+}
+
+function clickEvent(e){
+    const choice = e.target.id;
+    if(!choice) return;
+
+    if(choice.includes("square")){
+        colorIn(choice)
+    } else if(choice.includes("clear")){
+        clear()
+    }
 
 }
 
 
 
 grid(16);
-window.addEventListener('click',color)
+window.addEventListener('click',clickEvent)
 
