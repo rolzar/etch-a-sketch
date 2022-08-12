@@ -23,6 +23,16 @@ function clear(){
 
 }
 
+function resize(){
+    const size = prompt("What to resize as up to 100 x 100 : ");
+    
+    const choice = document.querySelectorAll(".grid");
+    choice.forEach(e => e.remove())
+
+    grid(size);
+}
+
+
 function clickEvent(e){
     const choice = e.target.id;
     if(!choice) return;
@@ -31,8 +41,9 @@ function clickEvent(e){
         colorIn(choice)
     } else if(choice.includes("clear")){
         clear()
+    } else if(choice.includes("resize")){
+        resize()
     }
-
 }
 
 
