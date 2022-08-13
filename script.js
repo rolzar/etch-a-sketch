@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 
 
+
 function grid(size){
     container.style.setProperty('--grid-size',size)
     for(let i = 1;i <= size*size;i++){
@@ -9,6 +10,23 @@ function grid(size){
         content.setAttribute('id',"square"+i)
         container.append(content);
     }
+}
+
+
+function randomize(e){
+
+    const choice = e.target.id;
+    if(!choice.includes("square")) return;
+    const color = document.querySelector("#"+choice);
+    
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+
+    color.style.backgroundColor = `rgb(${r},${g},${b})`; 
+
+    
+
 }
 
 function colorIn(e){
@@ -20,9 +38,12 @@ function colorIn(e){
 
 }
 
+
+
 function clear(){
     const choice = document.querySelectorAll(".grid");
-    choice.forEach(e => e.classList.remove('changeBackground')); 
+    choice.forEach(e => e.classList.remove('changeBackground'));
+    choice.forEach(e => e.style.backgroundColor = null); 
 
 }
 
@@ -56,8 +77,11 @@ function clickEvent(e){
         clear()
     } else if(choice.includes("resize")){
         resize()
+    } else if(choice.includes("random")){
+        window.addEventListener('mouseover',randomize)
     }
 }
+
 
 
 
